@@ -37,6 +37,10 @@ jobs:
         env:
           DATABRICKS_TOKEN: ${{ secrets.DEV_TOKEN }}
           DATABRICKS_BUNDLE_ENV: dev
+#          DATABRICKS_HOST: $(DATABRICKS_HOST)
+#          ARM_CLIENT_ID: $(DATABRICKS_CLIENT_ID)
+#          ARM_CLIENT_SECRET: $(DATABRICKS_CLIENT_SECRET)
+#          ARM_TENANT_ID: $(DATABRICKS_TENANT_ID)
 
   # Validate, deploy, and then run the bundle.
   pipeline_update:
