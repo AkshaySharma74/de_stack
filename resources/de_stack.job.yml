@@ -14,24 +14,22 @@ resources:
         on_failure:
           - akshay.sharma@databricks.com
 
-      job_clusters:
-        - job_cluster_key: job_cluster
-          new_cluster:
-            spark_version: 15.4.x-scala2.12
-            node_type_id: Standard_D3_v2
-            autoscale:
-                min_workers: 1
-                max_workers: 4
+#      job_clusters:
+#        - job_cluster_key: job_cluster
+#          new_cluster:
+#            spark_version: 15.4.x-scala2.12
+#            node_type_id: Standard_D3_v2
+#            autoscale:
+#                min_workers: 1
+#                max_workers: 4
 
       tasks:
         - task_key: Bronze
-          job_cluster_key: job_cluster
           notebook_task:
             notebook_path: ../src/Bronze.py
             base_parameters:
               env: ${bundle.target}
         - task_key: Silver
-          job_cluster_key: job_cluster
           depends_on:
             - task_key: Bronze
           notebook_task:
@@ -39,7 +37,6 @@ resources:
             base_parameters:
               env: ${bundle.target}
         - task_key: Gold
-          job_cluster_key: job_cluster
           depends_on:
             - task_key: Silver
           notebook_task:
