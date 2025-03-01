@@ -32,7 +32,7 @@ jobs:
 
       # Deploy the bundle to the "qa" target as defined
       # in the bundle's settings file.
-      - run: databricks bundle deploy
+      - run: databricks bundle deploy -t dev
         working-directory: .
         env:
           DATABRICKS_TOKEN: ${{ secrets.DEV_TOKEN }}
@@ -56,7 +56,7 @@ jobs:
 
       # Run the Databricks workflow named "my-job" as defined in the
       # bundle that was just deployed.
-      - run: databricks bundle run de_stack_job
+      - run: databricks bundle run de_stack_job -t dev
         working-directory: .
         env:
           DATABRICKS_TOKEN: ${{ secrets.DEV_TOKEN }}

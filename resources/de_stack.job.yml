@@ -14,12 +14,6 @@ resources:
         on_failure:
           - akshay.sharma@databricks.com
 
-      tasks:
-        - task_key: notebook_task
-          job_cluster_key: job_cluster
-          notebook_task:
-            notebook_path: ../src/notebook.ipynb
-        
       job_clusters:
         - job_cluster_key: job_cluster
           new_cluster:
@@ -28,3 +22,28 @@ resources:
             autoscale:
                 min_workers: 1
                 max_workers: 4
+
+      tasks:
+        - task_key: Bronze
+          job_cluster_key: job_cluster
+          notebook_task:
+            notebook_path: ../src/Bronze.py
+            base_parameters:
+              env: ${bundle.target}
+        - task_key: Silver
+          job_cluster_key: job_cluster
+          depends_on:
+            - task_key: Bronze
+          notebook_task:
+            notebook_path: ../src/Silver.py
+            base_parameters:
+              env: ${bundle.target}
+        - task_key: Gold
+          job_cluster_key: job_cluster
+          depends_on:
+            - task_key: Silver
+          notebook_task:
+            notebook_path: ../src/Gold.py
+            base_parameters:
+              env: ${bundle.target}
+
