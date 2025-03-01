@@ -1,4 +1,8 @@
 # Databricks notebook source
+spark.conf.set("spark.sql.ansi.enabled",False)
+
+# COMMAND ----------
+
 gold_table_name = "partner_summary.default.taxi_data_gold"
 
 # COMMAND ----------
