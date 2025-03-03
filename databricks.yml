@@ -17,10 +17,22 @@ targets:
     workspace:
       host: https://adb-984752964297111.11.azuredatabricks.net
 
-  prod:
+  prod1:
     mode: production
     workspace:
       host: https://adb-984752964297111.11.azuredatabricks.net
+      # We explicitly specify /Workspace/Users/akshay.sharma@databricks.com to make sure we only have a single copy.
+      root_path: /Workspace/Users/akshay.sharma@databricks.com/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - user_name: akshay.sharma@databricks.com
+        level: CAN_MANAGE
+    run_as:
+      user_name: akshay.sharma@databricks.com
+
+  prod2:
+    mode: production
+    workspace:
+      host: https://eastus2.azuredatabricks.net
       # We explicitly specify /Workspace/Users/akshay.sharma@databricks.com to make sure we only have a single copy.
       root_path: /Workspace/Users/akshay.sharma@databricks.com/.bundle/${bundle.name}/${bundle.target}
     permissions:

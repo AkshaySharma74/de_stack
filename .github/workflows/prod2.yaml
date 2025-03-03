@@ -1,6 +1,6 @@
 # This workflow validates, deploys, and runs the specified bundle
 # within a pre-production target named "qa".
-name: 'Dev deployment'
+name: 'Prod2 deployment'
 
 # Ensure that only a single job or workflow using the same concurrency group
 # runs at a time.
@@ -32,7 +32,7 @@ jobs:
 
       # Deploy the bundle to the "qa" target as defined
       # in the bundle's settings file.
-      - run: databricks bundle deploy -t dev
+      - run: databricks bundle deploy -t prod2
         working-directory: .
         env:
           DATABRICKS_TOKEN: ${{ secrets.DEV_TOKEN }}
@@ -60,7 +60,7 @@ jobs:
 
       # Run the Databricks workflow named "my-job" as defined in the
       # bundle that was just deployed.
-      - run: databricks bundle run de_stack_job -t dev
+      - run: databricks bundle run de_stack_job -t prod2
         working-directory: .
         env:
           DATABRICKS_TOKEN: ${{ secrets.DEV_TOKEN }}
