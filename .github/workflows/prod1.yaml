@@ -36,7 +36,7 @@ jobs:
         working-directory: .
         env:
           DATABRICKS_TOKEN: ${{ secrets.DEV_TOKEN }}
-          DATABRICKS_BUNDLE_ENV: dev
+          DATABRICKS_BUNDLE_ENV: prod1
 #          DATABRICKS_HOST: $(DATABRICKS_HOST)
 #          ARM_CLIENT_ID: $(DATABRICKS_CLIENT_ID)
 #          ARM_CLIENT_SECRET: $(DATABRICKS_CLIENT_SECRET)
@@ -64,4 +64,4 @@ jobs:
         working-directory: .
         env:
           DATABRICKS_TOKEN: ${{ secrets.DEV_TOKEN}}
-          DATABRICKS_BUNDLE_ENV: dev
+          DATABRICKS_BUNDLE_ENV: prod1
