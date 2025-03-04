@@ -1,6 +1,6 @@
 # This workflow validates, deploys, and runs the specified bundle
 # within a pre-production target named "qa".
-name: 'Prod1 deployment'
+name: 'Stage deployment'
 
 # Ensure that only a single job or workflow using the same concurrency group
 # runs at a time.
@@ -11,7 +11,7 @@ concurrency: 1
 on:
   push:
     branches:
-      - 'release'
+      - 'main'
   workflow_dispatch:
 
 jobs:
@@ -64,4 +64,4 @@ jobs:
         working-directory: .
         env:
           DATABRICKS_TOKEN: ${{ secrets.DEV_TOKEN}}
-          DATABRICKS_BUNDLE_ENV: prod1
+          DATABRICKS_BUNDLE_ENV: stage
