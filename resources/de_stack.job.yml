@@ -1,0 +1,42 @@
+# The main job for de_stack.
+resources:
+  jobs:
+    de_stack_job:
+      name: de_stack_job
+
+      trigger:
+        # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
+        periodic:
+          interval: 1
+          unit: DAYS
+
+#      job_clusters:
+#        - job_cluster_key: job_cluster
+#          new_cluster:
+#            spark_version: 15.4.x-scala2.12
+#            node_type_id: Standard_D3_v2
+#            autoscale:
+#                min_workers: 1
+#                max_workers: 4
+
+      tasks:
+        - task_key: Bronze
+          notebook_task:
+            notebook_path: ../src/Bronze.py
+            base_parameters:
+              env: ${bundle.target}
+        - task_key: Silver
+          depends_on:
+            - task_key: Bronze
+          notebook_task:
+            notebook_path: ../src/Silver.py
+            base_parameters:
+              env: ${bundle.target}
+        - task_key: Gold
+          depends_on:
+            - task_key: Silver
+          notebook_task:
+            notebook_path: ../src/Gold.py
+            base_parameters:
+              env: ${bundle.target}
+
