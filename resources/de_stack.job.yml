@@ -10,10 +10,6 @@ resources:
           interval: 1
           unit: DAYS
 
-      email_notifications:
-        on_failure:
-          - akshay.sharma@databricks.com
-
 #      job_clusters:
 #        - job_cluster_key: job_cluster
 #          new_cluster:
